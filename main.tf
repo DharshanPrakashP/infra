@@ -3,6 +3,7 @@ terraform {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 4.4.0"
+      region = "eu-east-1"
     }
   }
 
@@ -10,7 +11,6 @@ terraform {
 }
 
 provider "aws" {
-  alias = "ses"
   region = "eu-east-1"
   
 }
