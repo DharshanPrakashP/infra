@@ -61,7 +61,7 @@ resource "aws_security_group" "Test_secgrp" {
 resource "aws_instance" "Test-server" {
   ami                    = "ami-079db87dc4c10ac91"
   key_name               = "Test"
-  instance_type          = "t3.micro"
+  instance_type          = "t2.micro"
   subnet_id              = aws_subnet.Test_Subnet.id
   vpc_security_group_ids = [aws_security_group.Test_secgrp.id]
 }
