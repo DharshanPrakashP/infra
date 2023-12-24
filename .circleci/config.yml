@@ -5,7 +5,7 @@ orbs:
 
 workflows:
   version: 2
-  apply_infra:
+  apply_and_destroy_infra:
     jobs:
       - terraform/validate:
           context: terraform
@@ -22,3 +22,16 @@ workflows:
           context: terraform
           requires:
             - terraform/plan
+
+      - hold:
+          type: approval
+          name: manual_approval
+          requires:
+            - terraform/apply
+
+      - terraform/destroy:
+          attach-workspace: true
+          context: terraform
+          requires:
+            - hold
+            - terraform/validate
