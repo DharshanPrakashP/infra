@@ -15,7 +15,7 @@ workflows:
           persist-workspace: true
           requires:
             - terraform/validate
-   apply_infra:           
+  apply_infra:           
       - terraform/apply:
           attach-workspace: true
           context: terraform
