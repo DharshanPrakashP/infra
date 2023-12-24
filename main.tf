@@ -3,11 +3,11 @@ terraform {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 4.4.0"
-      region = "eu-east-1"
     }
   }
 
   required_version = ">= 0.12"
+region = "eu-east-1"
 }
 
 provider "aws" {
