@@ -23,15 +23,10 @@ workflows:
           requires:
             - terraform/plan
 
-      - hold:
-          type: approval
-          name: manual_approval
-          requires:
-            - terraform/apply
-
-      - terraform/destroy:
+      - destroy_infra:
           attach-workspace: true
           context: terraform
           requires:
-            - hold
             - terraform/validate
+          when: << pipeline.parameters.approve_destroy == "true" >>
+
