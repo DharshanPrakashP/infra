@@ -26,5 +26,4 @@ workflows:
       - terraform/destroy:
           attach-workspace: true
           context: terraform
-          requires:
-            - terraform/validate
+          
