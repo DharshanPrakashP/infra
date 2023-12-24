@@ -1,21 +1,19 @@
+version: 2.1
 
-version: '2.1'
 orbs:
-  terraform: circleci/terraform@3.0.1
+  terraform: hashicorp/terraform@1.1.0
+
 workflows:
-  deploy_infrastructure:
+  version: 2
+  apply_infra:
     jobs:
-      - terraform/validate:
-          checkout: true
-          context: terraform
-  plan_infra:
       - terraform/plan:
           checkout: true
           context: terraform
           persist-workspace: true
           requires:
             - terraform/validate
-  apply_infra:           
+
       - terraform/apply:
           attach-workspace: true
           context: terraform
@@ -24,3 +22,12 @@ workflows:
               only: master
           requires:
             - terraform/plan
+
+  plan_infra:
+    jobs:
+      - terraform/plan:
+          checkout: true
+          context: terraform
+          persist-workspace: true
+          requires:
+            - terraform/validate
