@@ -7,6 +7,9 @@ workflows:
   version: 2
   apply_infra:
     jobs:
+      - terraform/validate:
+          context: terraform
+
       - terraform/plan:
           checkout: true
           context: terraform
@@ -23,11 +26,3 @@ workflows:
           requires:
             - terraform/plan
 
-  plan_infra:
-    jobs:
-      - terraform/plan:
-          checkout: true
-          context: terraform
-          persist-workspace: true
-          requires:
-            - terraform/validate
