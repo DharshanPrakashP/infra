@@ -23,10 +23,8 @@ workflows:
           requires:
             - terraform/plan
 
-      - destroy_infra:
+      - terraform/destroy:
           attach-workspace: true
           context: terraform
           requires:
             - terraform/validate
-          when: << pipeline.parameters.approve_destroy == "true" >>
-
