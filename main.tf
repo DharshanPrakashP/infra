@@ -59,7 +59,7 @@ resource "aws_security_group" "Test_secgrp" {
 
 // EC2 Instance
 resource "aws_instance" "Test-server" {
-  ami                    = "ami-0416c18e75bd69567"
+  ami                    = "ami-079db87dc4c10ac91"
   key_name               = "Test"
   instance_type          = "t3.micro"
   subnet_id              = aws_subnet.Test_Subnet.id
