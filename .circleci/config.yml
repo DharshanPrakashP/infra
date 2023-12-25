@@ -5,7 +5,7 @@ orbs:
 
 workflows:
   version: 2
-  apply_and_destroy_infra:
+  apply_infra:
     jobs:
       - terraform/validate:
           context: terraform
@@ -20,11 +20,8 @@ workflows:
       - terraform/apply:
           attach-workspace: true
           context: terraform
+          filters:
+            branches:
+              only: master
           requires:
             - terraform/plan
-
-      - terraform/destroy:
-          attach-workspace: true
-          context: terraform
-          requires:
-            - terraform/apply
